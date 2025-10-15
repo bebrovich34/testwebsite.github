@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Марк Бебрович | Ебатель мозгов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED, #6D28D9);
+            color: #1F2937;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #7C3AED;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: white;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 5px solid white;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            color: #7C3AED;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 50%;
+            color: #7C3AED;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            background: #7C3AED;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1F2937;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #7C3AED;
+            padding-left: 10px;
+        }
+
+        .about-text {
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .skills-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: #F8FAFC;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #7C3AED;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: #EDE9FE;
+            transform: translateX(5px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.2);
+        }
+
+        .skill-title {
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-desc {
+            color: #6B7280;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .contacts {
+            list-style: none;
+        }
+
+        .contacts li {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-left: 3px solid #7C3AED;
+            color: #6B7280;
+        }
+
+        /* Окно ошибки */
+        .error-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .error-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: #ff4444;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .error-close {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .error-close:hover {
+            background: #cc0000;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <a href="glava.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Назад
+        </a>
+
+        <div class="profile-section">
+            <div class="profile-card">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="name">Марк Бебрович</div>
+                <div class="title">Профессиональный ебатель мозгов Дмитрию</div>
+                
+                <div class="social-links">
+                    <a href="https://t.me/tripe_Tripov" class="social-link telegram" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link discord" onclick="showError('discord')">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://vk.com/trip4ek" class="social-link vk" target="_blank">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Обо мне</h2>
+                <p class="about-text">Привет! Я Марк - профессиональный ебатель мозгов Дмитрию Бебровичу. Уже более 5 лет я посвятил себя благородному делу запутывания Дмитрия до состояния "что вообще только что произошло?".</p>
+                <p class="about-text">Мои методы настолько уникальны, что иногда даже я сам не понимаю, как у меня получается так эффективно ебать мозги Дмитрию! В свободное время люблю придумывать новые способы создания экзистенциальных кризисов и философских дилемм.</p>
+                <p class="about-text">С Дмитрием никогда не бывает скучно - гарантирую, что после моих визитов его мозг будет одновременно и веселиться, и плакать, и задаваться вопросом "а кто я вообще такой?"! 😄</p>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="section-title">Мои достижения по ебанию мозгов Дмитрию</div>
+            <div class="skills-grid">
+                <div class="skill-item" onclick="showAchievementError('Поиск файлов')">
+                    <div class="skill-title">Заставил Дмитрия искать несуществующие файлы</div>
+                    <div class="skill-desc">Создал ситуацию, когда Дмитрий 3 часа искал папку "Системные настройки вселенной"</div>
+                </div>
+                <div class="skill-item" onclick="showAchievementError('Сон наяву')">
+                    <div class="skill-title">Доказал Дмитрию, что он спит наяву</div>
+                    <div class="skill-desc">Убедил его в том, что реальность - это всего лишь очень реалистичный сон</div>
+                </div>
+                <div class="skill-item" onclick="showAchievementError('Сомнения в имени')">
+                    <div class="skill-title">Научил Дмитрия сомневаться в своем имени</div>
+                    <div class="skill-desc">Заставил его проверять паспорт каждый раз, когда кто-то обращается к нему по имени</div>
+                </div>
+                <div class="skill-item" onclick="showAchievementError('Три сосны')">
+                    <div class="skill-title">Запутал Дмитрия в трех соснах</div>
+                    <div class="skill-desc">Буквально. Он до сих пор ищет выход из рощи за домом</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Контакты</h2>
+            <ul class="contacts">
+                <li>Email: не ебу</li>
+                <li>Телефон: +7 888 888 88 88</li>
+                <li>GitHub: не ебу</li>
+                <li>Telegram: а зачем?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Окно ошибки -->
+    <div id="errorModal" class="error-modal">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-ban"></i>
+            </div>
+            <div class="error-title" id="errorTitle">ДОСТУП ЗАПРЕЩЕН</div>
+            <div class="error-message" id="errorMessage">
+                Вы недостойны общаться со мной в Discord!<br>
+                Ваш уровень крутости недостаточно высок.
+            </div>
+            <button class="error-close" onclick="closeError()">Понятно, я неудачник</button>
+        </div>
+    </div>
+
+    <script>
+        const achievementErrors = {
+            'Поиск файлов': {
+                title: 'ФАЙЛЫ НЕ НАЙДЕНЫ',
+                message: 'Папка "Системные настройки вселенной" до сих пор не найдена! Дмитрий продолжает поиски. Возможно, она в другом измерении?'
+            },
+            'Сон наяву': {
+                title: 'РЕАЛЬНОСТЬ ПОД ВОПРОСОМ',
+                message: 'Дмитрий до сих пор не уверен, спит он или бодрствует. Иногда он щипает себя и спрашивает: "А это боль во сне или наяву?"'
+            },
+            'Сомнения в имени': {
+                title: 'КРИЗИС ИДЕНТИЧНОСТИ',
+                message: 'Дмитрий теперь представляется разными именами: то Вася, то Петя, то "Человек-без-имени". Паспорт износился от частых проверок!'
+            },
+            'Три сосны': {
+                title: 'ПОТЕРЯН В ПРОСТРАНСТВЕ',
+                message: 'Дмитрий до сих пор в той роще! Он уже начал давать имена деревьям и разговаривать с белками о смысле жизни.'
+            },
+            'discord': {
+                title: 'ДОСТУП ЗАПРЕЩЕН',
+                message: 'Вы недостойны общаться со мной в Discord!<br>Ваш уровень крутости недостаточно высок.'
+            }
+        };
+
+        function showError(type) {
+            const error = achievementErrors[type];
+            document.getElementById('errorTitle').textContent = error.title;
+            document.getElementById('errorMessage').innerHTML = error.message;
+            document.getElementById('errorModal').style.display = 'flex';
+        }
+
+        function showAchievementError(achievementName) {
+            showError(achievementName);
+        }
+
+        function closeError() {
+            document.getElementById('errorModal').style.display = 'none';
+        }
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('errorModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeError();
+            }
+        });
+
+        // Закрытие модального окна при нажатии Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeError();
+            }
+        });
+    </script>
+</body>
+</html>

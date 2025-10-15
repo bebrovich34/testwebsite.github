@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семья Бебровичей</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #8A2BE2, #4B0082, #9400D3);
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #E0B0FF;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 5% 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .profiles-section {
+            padding: 40px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            padding: 20px;
+        }
+
+        .profile-name {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .profile-bio {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .profile-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .interest-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 5%;
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #E0B0FF;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .profiles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i>👨‍👩‍👧‍👦</i> Семья Бебровичей
+        </div>
+        <nav>
+            <a href="#">Главная</a>
+            <a href="#">Семейная история</a>
+            <a href="#">Фотогалерея</a>
+            <a href="#">Контакты</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Семья Бебровичей</h1>
+        <p>Добро пожаловать на нашу семейную страницу! Здесь вы можете познакомиться с членами нашей дружной семьи, узнать о наших увлечениях и интересах.</p>
+    </section>
+
+    <section class="profiles-section">
+        <h2 class="section-title">Члены семьи</h2>
+        <div class="profiles-grid">
+            <!-- Профиль 1 -->
+            <a href="dmitry.html" style="text-decoration: none; color: inherit;">
+                <div class="profile-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Дмитрий Бебрович" class="profile-img">
+                    <div class="profile-info">
+                        <h3 class="profile-name">Дмитрий Бебрович</h3>
+                        <p class="profile-bio"></p>
+                        <div class="profile-interests">
+                            <span class="interest-tag">Игроман</span>
+                            <span class="interest-tag">Тугодум</span>
+                            <span class="interest-tag">Еблан</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Профиль 2 -->
+            <a href="mark.html" style="text-decoration: none; color: inherit;">
+                <div class="profile-card">
+                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Марк Бебрович" class="profile-img">
+                    <div class="profile-info">
+                        <h3 class="profile-name">Марк Бебрович</h3>
+                        <p class="profile-bio"></p>
+                        <div class="profile-interests">
+                            <span class="interest-tag">Игроман</span>
+                            <span class="interest-tag">Тугодум</span>
+                            <span class="interest-tag">Еблан</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Профиль 3 -->
+            <a href="baga.html" style="text-decoration: none; color: inherit;">
+                <div class="profile-card">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Богдан Бебрович" class="profile-img">
+                    <div class="profile-info">
+                        <h3 class="profile-name">Богдан Бебрович</h3>
+                        <p class="profile-bio"></p>
+                        <div class="profile-interests">
+                            <span class="interest-tag">Игроман</span>
+                            <span class="interest-tag">Тугодум</span>
+                            <span class="interest-tag">Еблан</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">О нашей семье</a>
+            <a href="#">Семейная история</a>
+            <a href="#">Фотогалерея</a>
+            <a href="#">Контакты</a>
+        </div>
+        <p>© 2025 Семья Бебровичей. Все права защищены.</p>
+    </footer>
+</body>
+</html>

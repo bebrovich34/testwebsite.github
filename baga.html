@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Богдан Бебрович | Загадочный</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED, #6D28D9);
+            color: #1F2937;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #7C3AED;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: white;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 5px solid white;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            color: #7C3AED;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 50%;
+            color: #7C3AED;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            background: #7C3AED;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1F2937;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #7C3AED;
+            padding-left: 10px;
+        }
+
+        .about-text {
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .skills-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: #F8FAFC;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #7C3AED;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: #EDE9FE;
+            transform: translateX(5px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.2);
+        }
+
+        .skill-title {
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-desc {
+            color: #6B7280;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .contacts {
+            list-style: none;
+        }
+
+        .contacts li {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-left: 3px solid #7C3AED;
+            color: #6B7280;
+        }
+
+        /* Окно ошибки */
+        .error-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .error-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: #ff4444;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .error-close {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .error-close:hover {
+            background: #cc0000;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <a href="glava.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Назад
+        </a>
+
+        <div class="profile-section">
+            <div class="profile-card">
+                <div class="avatar">
+                    <i class="fas fa-question"></i>
+                </div>
+                <div class="name">Богдан Бебрович</div>
+                <div class="title">Загадочная личность</div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link telegram" onclick="showError('telegram')">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link discord" onclick="showError('discord')">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="social-link vk" onclick="showError('vk')">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Обо мне</h2>
+                <p class="about-text">Кто я? Зачем я здесь? Что вообще происходит? Эти вопросы мучают меня каждую ночь. Я - Богдан Бебрович, загадочная личность в семье Бебровичей.</p>
+                <p class="about-text">Мое существование окутано тайной. Иногда я появляюсь, иногда исчезаю. Дмитрий и Марк до сих пор спорят, реальный я или просто плод их воображения.</p>
+                <p class="about-text">Моя жизнь - это вечная загадка, а моя миссия - оставаться загадкой для всех, включая самого себя! 🤔</p>
+            </div>
+        </div>
+
+        <div class="skills-section">
+            <div class="section-title">Мои таинственные умения</div>
+            <div class="skills-grid">
+                <div class="skill-item" onclick="showAchievementError('Исчезновение')">
+                    <div class="skill-title">Исчезновение в никуда</div>
+                    <div class="skill-desc">Могу исчезнуть в самый неподходящий момент и появиться, когда меня меньше всего ждут</div>
+                </div>
+                <div class="skill-item" onclick="showAchievementError('Загадки')">
+                    <div class="skill-title">Создание загадок</div>
+                    <div class="skill-desc">Превращаю простые ситуации в неразрешимые головоломки для Дмитрия и Марка</div>
+                </div>
+                <div class="skill-item" onclick="showAchievementError('Тайны')">
+                    <div class="skill-title">Хранение тайн</div>
+                    <div class="skill-desc">Знаю все секреты Бебровичей, но никогда никому их не расскажу (или расскажу?)</div>
+                </div>
+                <div class="skill-item" onclick="showAchievementError('Призрак')">
+                    <div class="skill-title">Режим призрака</div>
+                    <div class="skill-desc">Иногда меня видят, иногда нет. Иногда я есть, иногда меня нет. Загадка!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Контакты</h2>
+            <ul class="contacts">
+                <li>Email: кто я?</li>
+                <li>Телефон: +7 ??? ??? ?? ??</li>
+                <li>GitHub: призрак в машине</li>
+                <li>Telegram: @bogdan_bebrovich</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Окно ошибки -->
+    <div id="errorModal" class="error-modal">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-ban"></i>
+            </div>
+            <div class="error-title" id="errorTitle">ДОСТУП ЗАПРЕЩЕН</div>
+            <div class="error-message" id="errorMessage">
+                Вы недостойны общаться со мной!<br>
+                Ваш уровень загадочности недостаточно высок.
+            </div>
+            <button class="error-close" onclick="closeError()">Понятно, я слишком очевиден</button>
+        </div>
+    </div>
+
+    <script>
+        const achievementErrors = {
+            'Исчезновение': {
+                title: 'ИСЧЕЗНОВЕНИЕ УСПЕШНО',
+                message: 'Я только что исчез! Или нет? Может быть, я никогда и не появлялся? Загадка останется неразгаданной...'
+            },
+            'Загадки': {
+                title: 'ЗАГАДКА СОЗДАНА',
+                message: 'Новая загадка для Бебровичей готова! Дмитрий уже ломает голову, а Марк ищет скрытый смысл там, где его нет.'
+            },
+            'Тайны': {
+                title: 'ТАЙНА СОХРАНЕНА',
+                message: 'Знаю я один секрет... но не скажу! Или скажу? Нет, не скажу. Или... Ладно, забудьте.'
+            },
+            'Призрак': {
+                title: 'РЕЖИМ ПРИЗРАКА АКТИВИРОВАН',
+                message: 'Вы меня видите? А теперь? А сейчас? Я здесь? Или меня нет? Мистика!'
+            },
+            'telegram': {
+                title: 'СООБЩЕНИЕ НЕ ДОСТАВЛЕНО',
+                message: 'Telegram не может найти меня. Возможно, я в другом измерении? Или просто призрак?'
+            },
+            'discord': {
+                title: 'ГОЛОС ИЗ НИОТКУДА',
+                message: 'Вы слышите меня в Discord? Это всего лишь эхо... или я? Загадка!'
+            },
+            'vk': {
+                title: 'СТРАНИЦА НЕ НАЙДЕНА',
+                message: 'Моя страница ВКонтакте то появляется, то исчезает. Сегодня ее нет, завтра - есть. Мистика!'
+            }
+        };
+
+        function showError(type) {
+            const error = achievementErrors[type];
+            document.getElementById('errorTitle').textContent = error.title;
+            document.getElementById('errorMessage').innerHTML = error.message;
+            document.getElementById('errorModal').style.display = 'flex';
+        }
+
+        function showAchievementError(achievementName) {
+            showError(achievementName);
+        }
+
+        function closeError() {
+            document.getElementById('errorModal').style.display = 'none';
+        }
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('errorModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeError();
+            }
+        });
+
+        // Закрытие модального окна при нажатии Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeError();
+            }
+        });
+    </script>
+</body>
+</html>

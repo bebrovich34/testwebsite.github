@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дмитрий Бебрович | Прокурил мозги</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED, #6D28D9);
+            color: #1F2937;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #7C3AED;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: white;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 5px solid white;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1F2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            color: #7C3AED;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 50%;
+            color: #7C3AED;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            background: #7C3AED;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1F2937;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #7C3AED;
+            padding-left: 10px;
+        }
+
+        .about-text {
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .skill {
+            background: #7C3AED;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .skill:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .contacts {
+            list-style: none;
+        }
+
+        .contacts li {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-left: 3px solid #7C3AED;
+            color: #6B7280;
+        }
+
+        /* Окно ошибки */
+        .error-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .error-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: #ff4444;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .error-close {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .error-close:hover {
+            background: #cc0000;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <a href="glava.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Назад
+        </a>
+
+        <div class="profile-section">
+            <div class="profile-card">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="name">Дмитрий Бебрович</div>
+                <div class="title">прокурил мозги</div>
+                
+                <div class="social-links">
+                    <a href="https://t.me/tripe_Tripov" class="social-link telegram" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link discord" onclick="showError('discord')">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://vk.com/trip4ek" class="social-link vk" target="_blank">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Обо мне</h2>
+                <p class="about-text">Привет! Я очень весёлый парень, который профессионально прокурю мозги уже более 5 лет. Обожаю смешить людей до слёз, а потом запутывать их до состояния "что вообще только что произошло?".</p>
+                <p class="about-text">Моё чувство юмора настолько уникальное, что иногда даже я сам не понимаю свои шутки! В свободное время люблю рассказывать анекдоты с неожиданной развязкой и создавать такие комичные ситуации, что окружающие сначала смеются, а потом чешут затылок.</p>
+                <p class="about-text">Со мной никогда не бывает скучно - гарантирую, что после общения со мной ваш мозг будет одновременно и веселиться, и плакать! 😄</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Мои навыки</h2>
+            <div class="skills">
+                <span class="skill" onclick="showSkillError('Запутывание')">Запутывание</span>
+                <span class="skill" onclick="showSkillError('Философствование')">Философствование</span>
+                <span class="skill" onclick="showSkillError('Двусмысленность')">Двусмысленность</span>
+                <span class="skill" onclick="showSkillError('Отвлечение внимания')">Отвлечение внимания</span>
+                <span class="skill" onclick="showSkillError('Создание иллюзий')">Создание иллюзий</span>
+                <span class="skill" onclick="showSkillError('Игра словами')">Игра словами</span>
+                <span class="skill" onclick="showSkillError('Наведение тени на плетень')">Наведение тени на плетень</span>
+                <span class="skill" onclick="showSkillError('Разрушение шаблонов')">Разрушение шаблонов</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Контакты</h2>
+            <ul class="contacts">
+                <li>Email: хуй вам</li>
+                <li>Телефон: +7 777 777 77 77</li>
+                <li>GitHub: плакал в сторонке</li>
+                <li>Telegram: @tripe_Tripov</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Окно ошибки -->
+    <div id="errorModal" class="error-modal">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-ban"></i>
+            </div>
+            <div class="error-title" id="errorTitle">ДОСТУП ЗАПРЕЩЕН</div>
+            <div class="error-message" id="errorMessage">
+                Вы недостойны общаться со мной в Discord!<br>
+                Ваш уровень крутости недостаточно высок.
+            </div>
+            <button class="error-close" onclick="closeError()">Понятно, я неудачник</button>
+        </div>
+    </div>
+
+    <script>
+        const skillErrors = {
+            'Запутывание': {
+                title: 'ЗАПУТАЛСЯ?',
+                message: 'Поздравляю! Вы успешно запутались. Теперь сидите и думайте, как отсюда выбраться. Подсказка: ответа нет.'
+            },
+            'Философствование': {
+                title: 'ФИЛОСОФСКАЯ КАТАСТРОФА',
+                message: 'Ваш мозг не готов к таким глубинам. Он может свернуться в трубочку от осознания бессмысленности бытия.'
+            },
+            'Двусмысленность': {
+                title: 'ДВУСМЫСЛЕННАЯ ОШИБКА',
+                message: 'Это сообщение может означать что угодно. Или ничего. Или и то, и другое одновременно. Разбирайтесь сами!'
+            },
+            'Отвлечение внимания': {
+                title: 'ЭЙ, СМОТРИТЕ!',
+                message: 'Пока вы читали это сообщение, я украл ваш кошелек. Шучу... Или нет? Проверьте карманы!'
+            },
+            'Создание иллюзий': {
+                title: 'ИЛЛЮЗИЯ ВЫБОРА',
+                message: 'Вам кажется, что вы можете закрыть это окно. Это иллюзия. На самом деле вы застряли здесь навсегда.'
+            },
+            'Игра словами': {
+                title: 'СЛОВЕСНАЯ КАША',
+                message: 'Слова перепутались в голове и теперь не могут найти выход. Попробуйте встряхнуть головой. Не помогло? Я же предупреждал!'
+            },
+            'Наведение тени на плетень': {
+                title: 'ТЕНЬ НАВЕДЕНА',
+                message: 'Вы пытались понять, что это значит, но теперь сами не знаете, о чем речь. Миссия выполнена успешно!'
+            },
+            'Разрушение шаблонов': {
+                title: 'ШАБЛОН УНИЧТОЖЕН',
+                message: 'Ваше мышление больше не будет прежним. Теперь вы обречены видеть мир через призму хаоса и абсурда. Добро пожаловать в клуб!'
+            },
+            'discord': {
+                title: 'ДОСТУП ЗАПРЕЩЕН',
+                message: 'Вы недостойны общаться со мной в Discord!<br>Ваш уровень крутости недостаточно высок.'
+            }
+        };
+
+        function showError(type) {
+            const error = skillErrors[type];
+            document.getElementById('errorTitle').textContent = error.title;
+            document.getElementById('errorMessage').innerHTML = error.message;
+            document.getElementById('errorModal').style.display = 'flex';
+        }
+
+        function showSkillError(skillName) {
+            showError(skillName);
+        }
+
+        function closeError() {
+            document.getElementById('errorModal').style.display = 'none';
+        }
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('errorModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeError();
+            }
+        });
+
+        // Закрытие модального окна при нажатии Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeError();
+            }
+        });
+    </script>
+</body>
+</html>
